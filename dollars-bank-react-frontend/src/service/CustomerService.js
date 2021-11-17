@@ -68,7 +68,7 @@ class CustomerService {
   };
 
   createAccount = async (newAccountInfo) => {
-    let url = CUSTOMER_URL + "/customer";
+    let url = CUSTOMER_URL + "/create-account";
 
     const headers = {
       "Content-Type": "application/json",

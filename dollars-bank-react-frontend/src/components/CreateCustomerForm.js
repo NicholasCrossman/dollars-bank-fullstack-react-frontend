@@ -13,7 +13,7 @@ const CreateCustomerForm = (props) => {
     username: "",
     password: "",
     initialDeposit: "",
-    currentBalance: "",
+    currentBalance: 0,
   });
 
   const [service] = useState(new CustomerService());

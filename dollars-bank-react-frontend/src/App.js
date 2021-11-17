@@ -9,7 +9,7 @@ import AppBarLoggedIn from "./components/AppBarLoggedIn";
 function App() {
   return (
     <div className="App">
-      <Deposit />
+      <CreateCustomerForm />
     </div>
   );
 }
