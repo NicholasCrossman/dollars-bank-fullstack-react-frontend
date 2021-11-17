@@ -51,6 +51,8 @@ export default function AppBarLoggedIn() {
 
           <IconButton color="inherit">Transfer</IconButton>
 
+          <IconButton color="inherit">Transaction-History</IconButton>
+
           <IconButton color="inherit">Account-Info</IconButton>
 
           <IconButton className={classes.logout} color="inherit" align="right">
