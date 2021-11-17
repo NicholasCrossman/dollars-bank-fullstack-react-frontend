@@ -4,39 +4,16 @@ import React from "react";
 const CUSTOMER_URL = "http://localhost:7061/api";
 
 class CustomerService {
-  constructor() {
-    this.token = "";
-  }
 
-  authHeader = () => {
-    return {
-      Authorization: "Bearer " + this.token,
-    };
-  };
 
-  /**
-     * 
-     * @param {*} loginInfo - Looks like
-     *          loginInfo = {
-                    username: username,
-                    password: password
-                }
-     */
-
-  /**
-     * 
-     * @param {*} newAccountInfo - Looks like
-     *          loginInfo = {
-                     name:'',
-        address:'',
-        phoneNumber:'',
-        username: '',
-        password: '',
-        initialDeposit:'',
-        currentBalance:''
-                }
-     */
-
+/**
+ * 
+ * @param {*} loginInfo - Looks like
+ *          loginInfo = {
+                username: username,
+                password: password
+            }
+    */
   postLogin = async (loginInfo) => {
     let url = CUSTOMER_URL + "/login";
 
@@ -51,11 +28,11 @@ class CustomerService {
         .post(url, JSON.stringify(loginInfo), { headers })
         // save the token in the state
         .then((response) => {
-          //console.log("ServiceResponse: " + JSON.stringify(response));
+          //console.log("LoginServiceResponse: " + JSON.stringify(response.data));
           if (response.status === 200) {
             // login succeeded
             console.log("Service: login success!");
-            this.token = response.data;
+            this.setToken(response.data);
             return response;
           }
         })
@@ -67,11 +44,31 @@ class CustomerService {
     );
   };
 
+  setToken = (token) => {
+    localStorage.setItem('id_token', token);
+  }
+
+  getToken = () => {
+    return localStorage.getItem('id_token');
+  }
+
+  /**
+     * 
+     * @param {*} newAccountInfo - Looks like
+     *        loginInfo = {
+                name:'',
+                address:'',
+                phoneNumber:'',
+                username: '',
+                password: '',
+                initialDeposit: 0.0
+            }
+     */
   createAccount = async (newAccountInfo) => {
     let url = CUSTOMER_URL + "/create-account";
 
     const headers = {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     };
     //console.log(loginInfo);
     //console.log(JSON.stringify(loginInfo));
@@ -85,7 +82,6 @@ class CustomerService {
           if (response.status === 200) {
             // Account Creation succeeded
             console.log("Service: Account Creation success!");
-            this.token = response.data;
             return response;
           }
         })
@@ -102,6 +98,7 @@ class CustomerService {
 
     const headers = {
       "Content-Type": "application/json",
+      "Authorization": "Bearer " + this.getToken()
     };
     //console.log(loginInfo);
     //console.log(JSON.stringify(loginInfo));
@@ -112,10 +109,9 @@ class CustomerService {
         // save the token in the state
         .then((response) => {
           //console.log("ServiceResponse: " + JSON.stringify(response));
-          if (response.status === 200) {
+          if (response.status === 201) {
             // deposit  succeeded
-            console.log("Service: Account Creation success!");
-            this.token = response.data;
+            console.log("Service: Deposit success!");
             return response;
           }
         })
@@ -132,20 +128,21 @@ class CustomerService {
 
     const headers = {
       "Content-Type": "application/json",
+      "Authorization": "Bearer " + this.getToken()
     };
     //console.log(loginInfo);
     //console.log(JSON.stringify(loginInfo));
-
+    console.log("Headers " + JSON.stringify(headers));
+    console.log("Data: " + JSON.stringify(withdrawInfo));
     return (
       axios
         .post(url, JSON.stringify(withdrawInfo), { headers })
         // save the token in the state
         .then((response) => {
           //console.log("ServiceResponse: " + JSON.stringify(response));
-          if (response.status === 200) {
+          if (response.status === 201) {
             // withdraw  succeeded
             console.log("Service: withdraw  success!");
-            this.token = response.data;
             return response;
           }
         })

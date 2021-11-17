@@ -31,8 +31,8 @@ const Withdraw = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    let response = await service.withdraw(setWithdrawInfo);
-    if (response.status === 200) {
+    let response = await service.withdraw(withdrawInfo);
+    if (response.status === 201) {
       console.log("withdraw success!");
     } else {
       // otherwise withdraw failed with an error message
