@@ -35,7 +35,7 @@ const Withdraw = (props) => {
     if (response.status === 200) {
       console.log("withdraw success!");
     } else {
-      // otherwise login failed with an error message
+      // otherwise withdraw failed with an error message
       console.log("Error: withdraw  failed.");
     }
   };
