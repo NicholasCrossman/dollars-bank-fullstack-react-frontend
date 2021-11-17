@@ -13,14 +13,14 @@ const Deposit = (props) => {
   const [service] = useState(new CustomerService());
 
   // update the state with each change to the form
-  const updateDeposit = (event, amount) => {
+  const updateDeposit = (event, name) => {
     const target = event.target;
     console.log(target);
 
     event.preventDefault();
     setDepositInfo((prevState) => ({
       ...prevState,
-      [amount]: event.target.value,
+      [name]: event.target.value,
     }));
   };
 

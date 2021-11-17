@@ -19,14 +19,14 @@ const CreateCustomerForm = (props) => {
   const [service] = useState(new CustomerService());
 
   // update the state with each change to the form
-  const updateCustomer = (event, username) => {
+  const updateCustomer = (event, propertyName) => {
     const target = event.target;
     console.log(target);
 
     event.preventDefault();
     setCustomerInfo((prevState) => ({
       ...prevState,
-      [username]: event.target.value,
+      [propertyName]: event.target.value,
     }));
   };
 

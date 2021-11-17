@@ -13,14 +13,14 @@ const Withdraw = (props) => {
   const [service] = useState(new CustomerService());
 
   // update the state with each change to the form
-  const updateWithdraw = (event, amount) => {
+  const updateWithdraw = (event, name) => {
     const target = event.target;
     console.log(target);
 
     event.preventDefault();
     setWithdrawInfo((prevState) => ({
       ...prevState,
-      [amount]: event.target.value,
+      [name]: event.target.value,
     }));
   };
 
