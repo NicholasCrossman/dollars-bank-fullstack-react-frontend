@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.icons {
+  font-size: 100px;
+  padding-top: 15px;
+}
+
+#dollarsbank {
+  padding-top: 50px;
+}
