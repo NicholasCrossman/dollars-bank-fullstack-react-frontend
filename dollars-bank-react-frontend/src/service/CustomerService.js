@@ -186,7 +186,7 @@ class CustomerService {
     );
   };
 
-  getAllOtherCustomers = async (customerInfo) => {
+  getAllOtherCustomers = async () => {
     let url = CUSTOMER_URL + "/customer/other";
 
     const headers = {
@@ -195,14 +195,16 @@ class CustomerService {
     };
 
     console.log("Headers " + JSON.stringify(headers));
-    console.log("Data: " + JSON.stringify(customerInfo));
+    // console.log("Data: " + JSON.stringify(customerInfo));
     return (
       axios
-        .get(url, JSON.stringify(customerInfo), { headers })
+        .get(url, { headers })
         // save the token in the state
         .then((response) => {
-          //console.log("ServiceResponse: " + JSON.stringify(response));
-          if (response.status === 201) {
+          console.log(
+            "CustomerServiceResponse allother: " + JSON.stringify(response)
+          );
+          if (response.status === 200) {
             // getting customer  succeeded
             console.log("Service: get all other success!");
             return response;

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
-import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from "react-bootstrap/FormControl";
 
 import CustomerService from "../service/CustomerService";
 
@@ -11,6 +9,7 @@ const Transfer = (props) => {
   // save the form input
   const [transferInfo, setTransferInfo] = useState({
     amount: "",
+    recieverId: 0,
   });
 
   const [service] = useState(new CustomerService());
@@ -30,6 +29,32 @@ const Transfer = (props) => {
   // re-render the component each time the state changes
   useEffect(() => {}, [transferInfo]);
 
+  const [customers, setCustomers] = useState([]);
+
+  //update once when component loads
+  // get all the OTHER customers
+  useEffect(() => {
+    getAllCustomers();
+  }, []);
+
+  // get the all the other customers and verify response
+  // set the state of customers with the response
+  const getAllCustomers = async () => {
+    //REMOVE THIS WHEN ITS COMPONENTS ARE CONNECTED ******
+    service.postLogin({ username: "username1", password: "password" });
+    let response = await service.getAllOtherCustomers();
+    //console.log("LoginResponse: " + JSON.stringify(response));
+    if (response.status === 200) {
+      console.log("GetAllOthercustomers: Login success!");
+      console.log(JSON.stringify(response.data));
+
+      setCustomers(response.data);
+    } else {
+      // otherwise login failed with an error message
+      console.log("Error: GetAllOthercustomers failed.");
+    }
+  };
+
   // handle the form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -43,12 +68,6 @@ const Transfer = (props) => {
     }
   };
 
-  //   handleChange = (id) => {
-  //     this.setState({
-  //       selectedValue: id,
-  //     });
-  //   };
-  //   this.state.lists.map((list)=> {
   return (
     <Container>
       <h1>Transfer</h1>
@@ -65,12 +84,39 @@ const Transfer = (props) => {
           />
         </Form.Group>
 
-        <InputGroup className="mb-3">
-          <InputGroup.Radio aria-label="Radio button for following text input" />
-          <InputGroup.Radio aria-label="Radio button for following text input" />
-          texts
-        </InputGroup>
-
+        <div className="container">
+          <h4 className="p-3 text-center"> Select the Transfer Recepient</h4>
+          <table className="table table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Address</th>
+                <th>Selected</th>
+              </tr>
+            </thead>
+            <tbody>
+              {customers &&
+                customers.map((customer) => (
+                  <tr key={customer.id}>
+                    <td>{customer.name}</td>
+                    <td>{customer.username}</td>
+                    <td>{customer.address}</td>
+                    <td>
+                      <input
+                        name="recieverId"
+                        // key={item}
+                        // id={item}
+                        value={customer.id}
+                        type="radio"
+                        onChange={(e) => updateTransfer(e, "recieverId")}
+                      />
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
         <Button variant="primary" type="submit">
           Submit
         </Button>
@@ -80,3 +126,87 @@ const Transfer = (props) => {
 };
 
 export default Transfer;
+
+{
+  /* {customers.map((item) => (
+          <tr key={item.username}>
+            {Object.values(item).map((val) => (
+              <td>{val}</td>
+            ))}
+          </tr>
+        ))} */
+}
+{
+  /* <InputGroup className="mb-3">
+<label htmlFor={item}> {item}</label>
+<InputGroup.Radio name="temp" key={item} id={item} value={item} />
+</InputGroup> */
+}
+
+{
+  /* <h4> Select the Transfer Recepient</h4>
+        {customers.map((item) => (
+          <React.Fragment>
+            <label htmlFor={item}> {item}</label>
+            <input
+              name="recieverId"
+              // key={item}
+              // id={item}
+              value={item}
+              type="radio"
+              onChange={(e) => updateTransfer(e, "recieverId")}
+            />
+            <br></br>
+          </React.Fragment>
+        ))} */
+}
+{
+  /* <table>
+<tr key={"header"}>
+  {Object.keys(customers[0]).map((key) => (
+    <th>{key}</th>
+  ))}
+</tr>
+{customers.map((item) => (
+  <tr key={item.id}>
+    {Object.values(item).map((val) => (
+      <td>{val}</td>
+    ))}
+  </tr>
+))}
+</table> */
+}
+
+// <div className="container">
+//           <h4 className="p-3 text-center"> Select the Transfer Recepient</h4>
+//           <table className="table table-striped table-bordered">
+//             <thead>
+//               <tr>
+//                 <th>Name</th>
+//                 <th>Username</th>
+//                 <th>Address</th>
+//                 <th>Selected</th>
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {customers &&
+//                 customers.map((customer) => (
+//                   <tr key={customer.id}>
+//                     <td>{customer.name}</td>
+//                     <td>{customer.username}</td>
+//                     <td>{customer.address}</td>
+//                     <td>
+//                       <input
+//                         name="recieverId"
+//                         // key={item}
+//                         // id={item}
+//                         value={customer.id}
+//                         type="radio"
+//                         onChange={(e) => updateTransfer(e, "recieverId")}
+//                       />
+//                     </td>
+//                   </tr>
+//                 ))}
+//             </tbody>
+//           </table>
+//         </div>
