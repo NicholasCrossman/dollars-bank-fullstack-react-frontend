@@ -26,15 +26,15 @@ function App() {
        <HomePage/>
       <div>
         <Routes>
-          <Route exact path={"/"} element={HomePage}/>
-          <Route path={"/account"} element={Customer}/>
-          <Route path={"/deposit"} element={Deposit}/>
-          <Route path={"/withdrawl"} element={Withdraw}/>
+          <Route exact path={"/"} element={<HomePage />}/>
+          <Route path={"/account"} element={<Customer />}/>
+          <Route path={"/deposit"} element={<Deposit />}/>
+          <Route path={"/withdrawl"} element={<Withdraw />}/>
           <Route path={"/transfer"} /* element={}*//>
           <Route path={"/passchange"} /* element={}*//>
           <Route path={"/logout"} /* element={}*//>
-          <Route path={"/login"}  element={LoginForm}/>
-          <Route path={"/create"} element={CreateCustomerForm}/>
+          <Route path={"/login"}  element={<LoginForm />}/>
+          <Route path={"/create"} element={<CreateCustomerForm />}/>
         </Routes>
       </div>
       </Router>
