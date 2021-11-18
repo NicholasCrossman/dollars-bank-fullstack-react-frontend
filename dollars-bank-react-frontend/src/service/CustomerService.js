@@ -4,9 +4,7 @@ import React from "react";
 const CUSTOMER_URL = "http://localhost:7061/api";
 
 class CustomerService {
-
-
-/**
+  /**
  * 
  * @param {*} loginInfo - Looks like
  *          loginInfo = {
@@ -45,16 +43,16 @@ class CustomerService {
   };
 
   logout = () => {
-      localStorage.removeItem('id_token');
-  }
+    localStorage.removeItem("id_token");
+  };
 
   setToken = (token) => {
-    localStorage.setItem('id_token', token);
-  }
+    localStorage.setItem("id_token", token);
+  };
 
   getToken = () => {
-    return localStorage.getItem('id_token');
-  }
+    return localStorage.getItem("id_token");
+  };
 
   /**
      * 
@@ -72,7 +70,7 @@ class CustomerService {
     let url = CUSTOMER_URL + "/create-account";
 
     const headers = {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     };
     //console.log(loginInfo);
     //console.log(JSON.stringify(loginInfo));
@@ -102,7 +100,7 @@ class CustomerService {
 
     const headers = {
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + this.getToken()
+      Authorization: "Bearer " + this.getToken(),
     };
     //console.log(loginInfo);
     //console.log(JSON.stringify(loginInfo));
@@ -132,7 +130,7 @@ class CustomerService {
 
     const headers = {
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + this.getToken()
+      Authorization: "Bearer " + this.getToken(),
     };
     //console.log(loginInfo);
     //console.log(JSON.stringify(loginInfo));
@@ -152,6 +150,66 @@ class CustomerService {
         })
         .catch((error) => {
           // withdraw creation failed
+          console.log("Error: " + error.message);
+          return error.message;
+        })
+    );
+  };
+
+  transfer = async (transferInfo) => {
+    let url = CUSTOMER_URL + "/transaction/transfer";
+
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + this.getToken(),
+    };
+
+    console.log("Headers " + JSON.stringify(headers));
+    console.log("Data: " + JSON.stringify(transferInfo));
+    return (
+      axios
+        .post(url, JSON.stringify(transferInfo), { headers })
+        // save the token in the state
+        .then((response) => {
+          //console.log("ServiceResponse: " + JSON.stringify(response));
+          if (response.status === 201) {
+            // transfer  succeeded
+            console.log("Service: Transfer success!");
+            return response;
+          }
+        })
+        .catch((error) => {
+          // transfer creation failed
+          console.log("Error: " + error.message);
+          return error.message;
+        })
+    );
+  };
+
+  getAllOtherCustomers = async (customerInfo) => {
+    let url = CUSTOMER_URL + "/customer/other";
+
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + this.getToken(),
+    };
+
+    console.log("Headers " + JSON.stringify(headers));
+    console.log("Data: " + JSON.stringify(customerInfo));
+    return (
+      axios
+        .get(url, JSON.stringify(customerInfo), { headers })
+        // save the token in the state
+        .then((response) => {
+          //console.log("ServiceResponse: " + JSON.stringify(response));
+          if (response.status === 201) {
+            // getting customer  succeeded
+            console.log("Service: get all other success!");
+            return response;
+          }
+        })
+        .catch((error) => {
+          // transfer creation failed
           console.log("Error: " + error.message);
           return error.message;
         })

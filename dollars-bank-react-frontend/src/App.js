@@ -5,11 +5,12 @@ import CreateCustomerForm from "./components/CreateCustomerForm";
 import Deposit from "./components/Deposit";
 import Withdraw from "./components/Withdraw";
 import AppBarLoggedIn from "./components/AppBarLoggedIn";
+import Transfer from "./components/Transfer";
 
 function App() {
   return (
     <div className="App">
-      <CreateCustomerForm />
+      <Transfer />
     </div>
   );
 }
