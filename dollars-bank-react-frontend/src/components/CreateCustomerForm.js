@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import CustomerService from "../service/CustomerService";
+import { useNavigate } from "react-router";
 
 const CreateCustomerForm = (props) => {
   // save the form input
@@ -14,6 +15,8 @@ const CreateCustomerForm = (props) => {
     password: "",
     initialDeposit: 0,
   });
+
+  let navigate = useNavigate();
 
   const [service] = useState(new CustomerService());
 
@@ -39,6 +42,7 @@ const CreateCustomerForm = (props) => {
     let response = await service.createAccount(customerInfo);
     if (response.status === 200) {
       console.log("Customer form: creation success!");
+      navigate("/");
     } else {
       // otherwise creation failed with an error message
       console.log("Error: account creation failed.");
