@@ -31,8 +31,8 @@ const Deposit = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    let response = await service.deposit(setDepositInfo);
-    if (response.status === 200) {
+    let response = await service.deposit(depositInfo);
+    if (response.status === 201) {
       console.log("Deposit success!");
     } else {
       // otherwise deposit failed with an error message
