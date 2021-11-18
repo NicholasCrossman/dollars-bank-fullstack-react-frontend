@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import CustomerService from "../service/CustomerService";
 
+//temp
 const LoginForm = (props) => {
   // save the form input
   const [loginInfo, setLoginInfo] = useState({
