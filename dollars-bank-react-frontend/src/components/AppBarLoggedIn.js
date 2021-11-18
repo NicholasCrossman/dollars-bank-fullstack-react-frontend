@@ -9,23 +9,6 @@ import HomeIcon from "@material-ui/icons/Home";
 
 // import MenuIcon from "@material-ui/icons/Menu";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-  logout: {
-    marginLeft: "auto",
-
-    color: "red",
-  },
-}));
-
 export default function AppBarLoggedIn() {
   const classes = useStyles();
 
@@ -46,8 +29,12 @@ export default function AppBarLoggedIn() {
             <HomeIcon />
           </IconButton>
 
-          <IconButton color="inherit">Deposit</IconButton>
-          {/* <NavLink to="/"> Dashboard </NavLink> */}
+          <IconButton color="inherit">
+            {" "}
+            <NavLink exact to="/deposit" className="nav-links">
+              Make a Deposit
+            </NavLink>
+          </IconButton>
 
           <IconButton color="inherit">Withdraw</IconButton>
 
