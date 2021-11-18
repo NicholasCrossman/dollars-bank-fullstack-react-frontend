@@ -44,6 +44,10 @@ class CustomerService {
     );
   };
 
+  logout = () => {
+      localStorage.removeItem('id_token');
+  }
+
   setToken = (token) => {
     localStorage.setItem('id_token', token);
   }

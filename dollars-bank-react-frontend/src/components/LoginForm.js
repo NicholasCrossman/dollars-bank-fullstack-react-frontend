@@ -48,6 +48,7 @@ const LoginForm = (props) => {
 
     return (
         <Container>
+            <h2>Login</h2><br/>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="form.Username">
 
