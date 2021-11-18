@@ -1,0 +1,86 @@
+.navbar {
+    background-color: #23a3ca;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: sticky; 
+    top: 0;
+    z-index: 20;
+  }
+  
+  .nav-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    max-width: 1500px;
+  }
+    
+  .glow {
+    font-family: fantasy;
+    color: #555555;
+    align-items: center;
+    margin-left: 20px;
+    padding-bottom: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 2rem;
+    flex-grow: 1;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+       0 0 40px #007193, 0 0 50px #007193, 0 0 60px #000;
+    }
+    to {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff,
+       0 0 40px #fff, 0 0 50px #fff, 0 0 60px #fff, 0 0 70px #fff ;
+    }
+  }
+  
+  
+  .nav-menu {
+    display: flex;
+    list-style: none;
+    text-align: center;
+    margin-right: 2rem;
+  }
+  
+  .nav-links {
+    color: #E8E8E2;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    height: 100%;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .nav-item {
+    height: 41px;
+    font-family: fantasy;
+    background-color: #000;
+    background-size: auto;
+    line-height: 44px;
+    margin-right: 1rem;
+  }
+  
+  .nav-item:after {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 0px;
+    background: transparent;
+    transition: width 0.7s ease, background-color 0.5s ease;
+  }
+  
+  
+  .nav-item .active {
+    border: 2px solid rgb(255, 255, 255);
+  }
+
+  
+  

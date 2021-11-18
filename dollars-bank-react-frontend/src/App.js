@@ -7,6 +7,7 @@ import Withdraw from "./components/Withdraw";
 import AppBarLoggedIn from "./components/AppBarLoggedIn";
 import HomePage from "./components/HomePage";
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const theme = createTheme({
   typography: {
@@ -20,7 +21,21 @@ function App() {
   return (
   <ThemeProvider theme={theme}>
     <div className="App">
-      <HomePage />
+       <Router>
+       <HomePage/>
+      <div>
+        <Routes>
+          <Route exact path={"/"} element={HomePage}/>
+          <Route path={"/deposit"} element={Deposit}/>
+          <Route path={"/withdrawl"} element={Withdraw}/>
+          <Route path={"/transfer"} /* element={}*//>
+          <Route path={"/passchange"} /* element={}*//>
+          <Route path={"/logout"} /* element={}*//>
+          <Route path={"/login"}  element={LoginForm}/>
+          <Route path={"/create"} element={CreateCustomerForm}/>
+        </Routes>
+      </div>
+      </Router>
     </div>
   </ThemeProvider>
   );

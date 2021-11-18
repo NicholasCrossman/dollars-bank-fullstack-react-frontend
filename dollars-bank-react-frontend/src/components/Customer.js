@@ -1,4 +1,6 @@
 import React from "react";
+import { Router } from 'react-router-dom';
+import NavbarBank from "./NavbarBank";
 
 function Customer(props) {
     return (
@@ -14,9 +16,9 @@ function Customer(props) {
                 <h3>Balance: {props.currentBalance}</h3><br/>
             </div>
             <div>
-                <hr/>
-                <h3>Navbar Goes Here!</h3>
-                <hr/>
+                <Router>
+                    <NavbarBank/>
+                </Router>
             </div>
             <div>
                 <h2>Recent Transactions</h2>
