@@ -8,6 +8,7 @@ import AppBarLoggedIn from "./components/AppBarLoggedIn";
 import HomePage from "./components/HomePage";
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Customer from "./components/Customer";
 
 const theme = createTheme({
   typography: {
@@ -26,6 +27,7 @@ function App() {
       <div>
         <Routes>
           <Route exact path={"/"} element={HomePage}/>
+          <Route path={"/account"} element={Customer}/>
           <Route path={"/deposit"} element={Deposit}/>
           <Route path={"/withdrawl"} element={Withdraw}/>
           <Route path={"/transfer"} /* element={}*//>
