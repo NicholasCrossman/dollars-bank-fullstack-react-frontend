@@ -50,11 +50,14 @@ return (
             color="inherit"
             aria-label="menu"
           >
-            <HomeIcon />
+
+              <Link to="/" style={{textDecoration: 'none', color: 'white'}}><HomeIcon /></Link>
           </IconButton>
 
           <IconButton color="inherit" align="right">
-            Login
+            <nav>
+               <Link to="/login" style={{textDecoration: 'none', color: 'white'}}>Login</Link>
+            </nav>
           </IconButton>
         </Toolbar>
       </AppBar>

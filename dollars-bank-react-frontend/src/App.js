@@ -23,7 +23,6 @@ function App() {
   <ThemeProvider theme={theme}>
     <div className="App">
        <Router>
-       <HomePage/>
       <div>
         <Routes>
           <Route exact path={"/"} element={<HomePage />}/>
