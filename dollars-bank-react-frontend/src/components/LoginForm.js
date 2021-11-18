@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import CustomerService from "../service/CustomerService";
+import { useNavigate } from "react-router";
 
 //temp
 const LoginForm = (props) => {
@@ -13,6 +14,7 @@ const LoginForm = (props) => {
   });
 
   const [service] = useState(new CustomerService());
+  let navigate = useNavigate();
 
   // update the state with each change to the form
   const updateLogin = (event, name) => {
@@ -39,6 +41,7 @@ const LoginForm = (props) => {
       // login succeeded
       // todo: redirect
       console.log("LoginForm: Login success!");
+      navigate("/account");
     } else {
       // otherwise login failed with an error message
       console.log("Error: login failed.");

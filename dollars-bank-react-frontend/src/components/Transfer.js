@@ -2,10 +2,9 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router";
 
 import CustomerService from "../service/CustomerService";
-
-//temp
 
 const Transfer = (props) => {
   // save the form input
@@ -15,6 +14,7 @@ const Transfer = (props) => {
   });
 
   const [service] = useState(new CustomerService());
+  let navigate = useNavigate();
 
   // update the state with each change to the form
   const updateTransfer = (event, name) => {
@@ -48,7 +48,7 @@ const Transfer = (props) => {
     //console.log("LoginResponse: " + JSON.stringify(response));
     if (response.status === 200) {
       console.log("GetAllOthercustomers: Login success!");
-      console.log(JSON.stringify(response.data));
+      //console.log(JSON.stringify(response.data));
 
       setCustomers(response.data);
     } else {
@@ -64,6 +64,7 @@ const Transfer = (props) => {
     let response = await service.transfer(transferInfo);
     if (response.status === 201) {
       console.log("Transfer success!");
+      navigate("/account");
     } else {
       // otherwise withdraw failed with an error message
       console.log("Error: Transfer  failed.");

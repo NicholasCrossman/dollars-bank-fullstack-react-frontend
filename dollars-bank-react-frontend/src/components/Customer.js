@@ -16,9 +16,7 @@ function Customer(props) {
                 <h3>Balance: {props.currentBalance}</h3><br/>
             </div>
             <div>
-                <Router>
-                    <NavbarBank/>
-                </Router>
+                <NavbarBank/>
             </div>
             <div>
                 <h2>Recent Transactions</h2>

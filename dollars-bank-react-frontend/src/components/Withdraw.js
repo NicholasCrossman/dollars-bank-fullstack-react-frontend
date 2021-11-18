@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import CustomerService from "../service/CustomerService";
+import { useNavigate } from "react-router";
 
 const Withdraw = (props) => {
   // save the form input
@@ -11,6 +12,7 @@ const Withdraw = (props) => {
   });
 
   const [service] = useState(new CustomerService());
+  let navigate = useNavigate();
 
   // update the state with each change to the form
   const updateWithdraw = (event, name) => {
@@ -34,6 +36,7 @@ const Withdraw = (props) => {
     let response = await service.withdraw(withdrawInfo);
     if (response.status === 201) {
       console.log("withdraw success!");
+      navigate("/account");
     } else {
       // otherwise withdraw failed with an error message
       console.log("Error: withdraw  failed.");

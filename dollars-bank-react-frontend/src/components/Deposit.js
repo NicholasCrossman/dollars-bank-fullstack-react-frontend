@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import CustomerService from "../service/CustomerService";
+import { useNavigate } from "react-router";
 
 const Deposit = (props) => {
   // save the form input
@@ -11,6 +12,7 @@ const Deposit = (props) => {
   });
 
   const [service] = useState(new CustomerService());
+  let navigate = useNavigate();
 
   // update the state with each change to the form
   const updateDeposit = (event, name) => {
@@ -34,6 +36,8 @@ const Deposit = (props) => {
     let response = await service.deposit(depositInfo);
     if (response.status === 201) {
       console.log("Deposit success!");
+      navigate("/account");
+
     } else {
       // otherwise deposit failed with an error message
       console.log("Error: Deposit  failed.");
