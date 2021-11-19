@@ -217,6 +217,70 @@ class CustomerService {
         })
     );
   };
+
+  getCustomerInfo = async () => {
+    let url = CUSTOMER_URL + "/customer/data";
+
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + this.getToken(),
+    };
+
+    //console.log("Headers " + JSON.stringify(headers));
+    // console.log("Data: " + JSON.stringify(customerInfo));
+    return (
+      axios
+        .get(url, { headers })
+        // save the token in the state
+        .then((response) => {
+          console.log(
+            "CustomerServiceResponse customerInfo: " + JSON.stringify(response)
+          );
+          if (response.status === 200) {
+            // getting customer  succeeded
+            console.log("Service: get customer success!");
+            return response;
+          }
+        })
+        .catch((error) => {
+          // transfer creation failed
+          console.log("Error: " + error.message);
+          return error.message;
+        })
+    );
+  };
+  getAllTransactions = async () => {
+    let url = CUSTOMER_URL + "/transaction/history";
+
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + this.getToken(),
+    };
+
+    //console.log("Headers " + JSON.stringify(headers));
+    // console.log("Data: " + JSON.stringify(customerInfo));
+    return (
+      axios
+        .get(url, { headers })
+        // save the token in the state
+        .then((response) => {
+          console.log(
+            "CustomerServiceResponse allTransactions: " +
+              JSON.stringify(response)
+          );
+          if (response.status === 200) {
+            // getting transactions  succeeded
+            console.log("Service: get 5 transactions success!");
+            return response;
+          }
+        })
+        .catch((error) => {
+          // transaction get failed
+          console.log("Error getting transactions: " + error.message);
+          return error.message;
+        })
+    );
+  };
 }
 
 export default CustomerService;

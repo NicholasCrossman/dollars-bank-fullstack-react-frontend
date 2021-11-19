@@ -43,7 +43,6 @@ const Transfer = (props) => {
   // set the state of customers with the response
   const getAllCustomers = async () => {
     //REMOVE THIS WHEN ITS COMPONENTS ARE CONNECTED ******
-    service.postLogin({ username: "username1", password: "password" });
     let response = await service.getAllOtherCustomers();
     //console.log("LoginResponse: " + JSON.stringify(response));
     if (response.status === 200) {
